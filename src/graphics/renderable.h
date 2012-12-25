@@ -99,6 +99,8 @@ protected:
 
 	void lockFrameIfVisible();
 	void unlockFrameIfVisible();
+
+	friend class LightManager;
 };
 
 } // End of namespace Graphics

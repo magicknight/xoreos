@@ -33,6 +33,7 @@
 #include "src/common/boundingbox.h"
 
 #include "src/graphics/types.h"
+#include "src/graphics/lightman.h"
 #include "src/graphics/indexbuffer.h"
 #include "src/graphics/vertexbuffer.h"
 
@@ -185,6 +186,9 @@ protected:
 
 	Common::UString _name; ///< The node's name.
 
+	// Vertex lighting
+	std::vector<LightingHandle> _lighting; ///< Lighting handles.
+
 	float _center     [3]; ///< The node's center.
 	float _position   [3]; ///< Position of the node.
 	float _rotation   [3]; ///< Node rotation.
@@ -227,6 +231,9 @@ private:
 	const Common::BoundingBox &getAbsoluteBound() const;
 
 	void orderChildren();
+
+	void clearLights();
+	void evaluateLights(Common::Matrix4x4 position);
 
 	static void renderGeometry(Mesh &mesh);
 	static void renderGeometryNormal(Mesh &mesh);

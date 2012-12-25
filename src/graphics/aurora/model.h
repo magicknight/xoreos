@@ -74,6 +74,9 @@ public:
 	/** Change the environment map on this model. */
 	void setEnvironmentMap(const Common::UString &environmentMap = "");
 
+	void show();
+	void hide();
+
 	/** Is that point within the model's bounding box? */
 	bool isIn(float x, float y) const;
 	/** Is that point within the model's bounding box? */
@@ -273,6 +276,8 @@ protected:
 	Shader::ShaderRenderable *_boundRenderable;
 
 private:
+	bool _needEvalLights;
+
 	bool _drawBound;
 	bool _drawSkeleton;
 	bool _drawSkeletonInvisible;
@@ -284,6 +289,8 @@ private:
 	float _animationLoopLength; ///< The length of one loop of the current animation.
 	float _animationLoopTime;   ///< The time the current loop of the current animation has played.
 
+
+	void evaluateLights();
 
 	/** Create the list of all state names. */
 	void createStateNamesList(std::list<Common::UString> *stateNames = 0);
